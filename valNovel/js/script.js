@@ -69,7 +69,9 @@ monogatari.assets ('videos', {
 monogatari.assets ('images', {
     classdoor: "S1ClassDoor.png",
     S1Classroom: "S1Classroom.png",
-		S1Sage: "sage.jpeg"
+		S1Sage: "sage.jpeg",
+		S1Jett: "jett.jpeg",
+		S1Pheonix: "pheonix.png"
 });
 
 // Define the backgrounds for each scene.
@@ -108,7 +110,25 @@ monogatari.script ({
 						'"My name is Sage!"',
 						'"It is very nice to meet you."',
             'hide image S1Sage with fadeOut',
-            'end'
+						'jump IntroduceJett'
+            //'end'
+				],
+
+				'IntroduceJett': [
+					'show image S1Jett with fadeIn',
+					"Are you the new kid?",
+					"It's nice to meet you I guess...",
+					'hide image S1Jett with fadeOut',
+					'jump IntroducePheonix'
+				],
+
+				'IntroducePheonix': [
+					'show image S1Pheonix with fadeIn',
+					"What's up?",
+					"I'm Phoenix!",
+					"Let me know if you ever want me to show you around.",
+					'hide image S1Pheonix with fadeOut',
+					'end'
 				]
 
 });
