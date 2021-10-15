@@ -71,7 +71,8 @@ monogatari.assets ('images', {
     S1Classroom: "S1Classroom.png",
 		S1Sage: "sage.jpeg",
 		S1Jett: "jett.jpeg",
-		S1Pheonix: "pheonix.png"
+		S1Pheonix: "pheonix.png",
+		jettPX: "jettPX.png"
 });
 
 // Define the backgrounds for each scene.
@@ -116,8 +117,9 @@ monogatari.script ({
 
 				'IntroduceJett': [
 					'show image S1Jett with fadeIn',
-					"Are you the new kid?",
-					"It's nice to meet you I guess...",
+					'"Are you the new kid?"',
+					'"My name is Jett"',
+					'Jett leaves',
 					'hide image S1Jett with fadeOut',
 					'jump IntroducePheonix'
 				],
@@ -136,14 +138,17 @@ monogatari.script ({
 
 monogatari.component ('main-screen').template (() => {
     return `
+				<br/>
+				<br/>
+				<br/>
         <h1>Valorant Dating Sim</h1>
-        <br/>
         <p>
         By Senya W.
         </p>
-        <br/>
+				<br/>
         <center>
-        <img src="assets/images/HomeWallpaper.jpeg" height="50%"/>
+				<img src="assets/images/jettPX.gif">
+				<img src="assets/images/phoenixPX.gif">
         </center>
 
         <main-menu></main-menu>
