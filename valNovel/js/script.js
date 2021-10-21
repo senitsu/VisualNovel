@@ -67,8 +67,9 @@ monogatari.assets ('videos', {
 
 // Define the images used in the game.
 monogatari.assets ('images', {
-    classdoor: "S1ClassDoor.png",
-    S1Classroom: "S1Classroom.png",
+    schoolFront: "school.jpeg",
+    classroom: "classroom.jpeg",
+		office: "office.jpeg",
 		S1Sage: "sage.jpeg",
 		S1Jett: "jett.jpeg",
 		S1Pheonix: "pheonix.png",
@@ -90,48 +91,33 @@ monogatari.characters ({
 monogatari.script ({
 
 	'Start': [
-            'show image classdoor with fadeIn',
+            'show image schoolFront with fadeIn',
             '"Today is your first day of school."',
-						'"You find the door of your first class."',
-            'hide image classdoor with fadeOut',
-            'jump Next'
+						{'Choice':{
+							'homeroom':{
+								'Text': 'Go to homeroom',
+								'Do': 'jump goHomeroom'
+							},
+							'office':{
+								'Text': 'Go to main office',
+								'Do': 'jump goOffice'
+							}
+						}
+					}
         ],
 
-        'Next': [
-            'show image S1Classroom with fadeIn',
-            '"You come face to face with three students."',
-						'"Someone next to you whispers that they are the student council leaders."',
-            'hide image S1Classroom with fadeOut',
-            'jump IntroduceSage'
+				'goHomeroom':[
+					'hide image schoolFront',
+					'show image classroom with fadeIn',
+					'You arrive to homeroom.',
 				],
 
-				'IntroduceSage': [
-            'show image S1Sage with fadeIn',
-            '"Hi!"',
-						'"My name is Sage!"',
-						'"It is very nice to meet you."',
-            'hide image S1Sage with fadeOut',
-						'jump IntroduceJett'
-            //'end'
-				],
-
-				'IntroduceJett': [
-					'show image S1Jett with fadeIn',
-					'"Are you the new kid?"',
-					'"My name is Jett"',
-					'Jett leaves',
-					'hide image S1Jett with fadeOut',
-					'jump IntroducePheonix'
-				],
-
-				'IntroducePheonix': [
-					'show image S1Pheonix with fadeIn',
-					"What's up?",
-					"I'm Phoenix!",
-					"Let me know if you ever want me to show you around.",
-					'hide image S1Pheonix with fadeOut',
-					'end'
+				'goOffice': [
+					'hide image schoolFront',
+					'show image office with fadeIn',
+					'You arrive at the main office.'
 				]
+
 
 });
 
