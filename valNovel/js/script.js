@@ -57,6 +57,8 @@ monogatari.assets ('voices', {
 
 // Define the sounds used in the game.
 monogatari.assets ('sounds', {
+	classNoise: "classNoise.mp3",
+	startSound: "startSound.mp3",
 
 });
 
@@ -91,8 +93,9 @@ monogatari.characters ({
 monogatari.script ({
 
 	'Start': [
+						'play sound startSound',
             'show image schoolFront with fadeIn',
-            '"Today is your first day of school."',
+            'Today is your first day of school.',
 						{'Choice':{
 							'homeroom':{
 								'Text': 'Go to homeroom',
@@ -108,8 +111,21 @@ monogatari.script ({
 
 				'goHomeroom':[
 					'hide image schoolFront',
+					'play sound classNoise',
 					'show image classroom with fadeIn',
 					'You arrive to homeroom.',
+					'A student walks up to you...',
+					{'Choice':{
+						'talk':{
+							'Text': 'Talk to your classmate',
+							'Do': 'jump pheonixHomeroomTalk'
+						},
+						'ignore':{
+							'Text': 'Ignore your classmate',
+							'Do': 'jump startClass'
+						}
+					}
+					}
 				],
 
 				'goOffice': [
