@@ -74,8 +74,9 @@ monogatari.assets ('images', {
 		office: "office.jpeg",
 		S1Sage: "sage.jpeg",
 		S1Jett: "jett.jpeg",
-		S1Pheonix: "pheonix.png",
-		jettPX: "jettPX.png"
+		S1Phoenix: "pheonix.png",
+		jettPX: "jettPX.png",
+		Phoenix: "phoenixPX.gif",
 });
 
 // Define the backgrounds for each scene.
@@ -93,7 +94,7 @@ monogatari.characters ({
 monogatari.script ({
 
 	'Start': [
-						'play sound startSound',
+						'play sound startSound with volume 100',
             'show image schoolFront with fadeIn',
             'Today is your first day of school.',
 						{'Choice':{
@@ -110,15 +111,16 @@ monogatari.script ({
         ],
 
 				'goHomeroom':[
+					'stop sound startSound',
 					'hide image schoolFront',
-					'play sound classNoise',
+					'play sound classNoise with volume 10',
 					'show image classroom with fadeIn',
 					'You arrive to homeroom.',
 					'A student walks up to you...',
 					{'Choice':{
 						'talk':{
 							'Text': 'Talk to your classmate',
-							'Do': 'jump pheonixHomeroomTalk'
+							'Do': 'jump phoenixHomeroomTalk'
 						},
 						'ignore':{
 							'Text': 'Ignore your classmate',
@@ -128,11 +130,31 @@ monogatari.script ({
 					}
 				],
 
+				'phoenixHomeroomTalk':[
+					'hide image classroom',
+					'show image Phoenix',
+					'"Hi, I am Phoenix! Nice to meet you."',
+					'"You are the new student right?"',
+					'You nod your head yes',
+					'"Ok cool! Let me know if you need help finding your way around the school."',
+					{'Choice':{
+						'go to desk':{
+							'Text': 'Go to your desk',
+							'Do': 'jump startClass'
+						},
+						'go to main office':{
+							'Text': 'Go to main office',
+							'Do': 'jump goOffice'
+						}
+					}
+					}
+				],
+
 				'goOffice': [
-					'hide image schoolFront',
+					'stop sound',
 					'show image office with fadeIn',
-					'You arrive at the main office.'
-				]
+					'You arrive at the main office.',
+				],
 
 
 });
