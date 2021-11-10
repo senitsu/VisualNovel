@@ -69,8 +69,8 @@ monogatari.assets ('videos', {
 
 // Define the images used in the game.
 monogatari.assets ('images', {
-    schoolFront: "school.jpeg",
-    classroom: "classroom.jpeg",
+    //schoolFront: "school.jpeg",
+    //classroom: "classroom.jpeg",
 		office: "office.jpeg",
 		S1Sage: "sage.jpeg",
 		S1Jett: "jett.jpeg",
@@ -81,7 +81,8 @@ monogatari.assets ('images', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
-
+	'classroom': 'classroom.jpeg',
+	'school': 'school.jpeg'
 });
 
 
@@ -95,7 +96,7 @@ monogatari.script ({
 
 	'Start': [
 						'play sound startSound with volume 100',
-            'show image schoolFront with fadeIn',
+            'show background school with fadeIn',
             'Today is your first day of school.',
 						{'Choice':{
 							'homeroom':{
@@ -112,9 +113,9 @@ monogatari.script ({
 
 				'goHomeroom':[
 					'stop sound startSound',
-					'hide image schoolFront',
+					//'hide image schoolFront',
 					'play sound classNoise with volume 10',
-					'show image classroom with fadeIn',
+					'show background classroom with fadeIn',
 					'You arrive to homeroom.',
 					'A student walks up to you...',
 					{'Choice':{
@@ -131,12 +132,17 @@ monogatari.script ({
 				],
 
 				'phoenixHomeroomTalk':[
-					'hide image classroom',
-					'show image Phoenix',
+					'show background classroom with fadeIn',
+					'show image Phoenix with fadeIn',
 					'"Hi, I am Phoenix! Nice to meet you."',
 					'"You are the new student right?"',
 					'You nod your head yes',
 					'"Ok cool! Let me know if you need help finding your way around the school."',
+					'hide image Phoenix',
+					'jump phoenixHomeroomTalk2'
+				],
+
+				'phoenixHomeroomTalk2':[
 					{'Choice':{
 						'go to desk':{
 							'Text': 'Go to your desk',
